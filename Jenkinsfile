@@ -1,8 +1,8 @@
 pipeline {
     agent any
 
-    stage {
-        stage {
+    stages {
+        stage('start') {
             steps {
                 sh "hello jenkins"
             }
