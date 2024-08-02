@@ -24,9 +24,7 @@ pipeline {
                 }
             }
         }
-    }
 
-    stages {
         stage('docker image build') {
             steps {
                 sh "docker build -t ${DOCKERHUB}:${currentBuild.number} ."
@@ -41,10 +39,7 @@ pipeline {
                 }
             }
         }
-    }
 
-
-    stages {
         stage('start2') {
             steps {
                 sh "echo hello jenkins!!!"
@@ -58,9 +53,7 @@ pipeline {
                 }
             }
         }
-    }
 
-    stages {
         stage('start3') {
             steps {
                 sh "echo hello jenkins!!!"
