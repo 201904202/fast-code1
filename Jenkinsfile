@@ -87,6 +87,16 @@ pipeline {
                 }
             }
         }
+
+        stage('Checkout Github') {
+            steps {
+                slackSend (
+                    channel: 'aws',
+                    color: '#FFFF00',
+                    message: "STARTED: ${currentBuild.number}"
+                )
+            }
+        }
        
 
     }
