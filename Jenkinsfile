@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout Github') {
             steps {
                 slackSend (
-                    channel: '#dep02',
+                    channel: '#aws',
                     color: '#FFFF00',
                     message: "STARTED: ${currentBuild.number}"
                 )
