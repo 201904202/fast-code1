@@ -59,7 +59,7 @@ pipeline {
             }
         }
 
-        stage('start3') {
+        stage('EKS manifest file update') {
             steps {
                 sh "echo hello jenkins!!!"
             }
@@ -69,6 +69,30 @@ pipeline {
                 }
                 success {
                     sh "echo success"
+                }
+            }
+        }
+
+        stage('EKS manifest file update') {
+            steps {
+                git credentialsId: GITCREDENTIAL, url: GITSSHADD, branch: 'main'
+                sh "git config --global user.email ${GITEMAIL}"
+                sh "git config --global user.name ${GITNAME}"
+                sh "sed -i 's@${DOCKERHUB}:.*@${DOCKERHUB}:${currentBuild.number}@g' fast.yml"
+
+                sh "git add ."
+                sh "git branch -M main"
+                sh "git commit -m 'fixed tag ${currentBuild.number}'"
+                sh "git remote remove origin"
+                sh "git remote add origin ${GITSSHADD}"
+                sh "git push origin main"
+            }
+            post {
+                failure {
+                    sh "echo manifest update failed"
+                }
+                success {
+                    sh "echo manifest update success"
                 }
             }
         }
