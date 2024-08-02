@@ -28,4 +28,4 @@ spec:
     spec:
       containers:
       - name: fast-con
-        image: 865577889736.dkr.ecr.ap-northeast-2.amazonaws.com/fast:10
+        image: 201904202/fast:10
